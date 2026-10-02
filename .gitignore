@@ -1,0 +1,35 @@
+# This repo is the theme folder only. WordPress core, uploads, wp-config.php, and the database never go in here.
+
+# Dependencies
+# npm packages: huge, and anyone can reinstall them with `npm install`
+node_modules/
+# Composer (PHP) packages: same idea, reinstalled with `composer install`
+vendor/
+# build/ is NOT ignored on purpose: Hostinger doesn't run npm, so compiled blocks must be committed to reach the site.
+
+# Secrets and local settings
+# Passwords and API keys for local tools; these must never reach GitHub
+.env
+.env.*
+# Database exports: personal data that stays on the server, never in Git
+*.sql
+*.sql.gz
+
+# Logs
+# Error and debug logs: specific to one laptop and change constantly and crash reports npm writes when an install fails
+*.log
+npm-debug.log*
+
+# OS and editor files
+# .DS_Store     - Hidden folder-view settings macOS adds to every folder
+# Thumbs.db     - Image thumbnail cache Windows adds to folders
+# desktop.ini   - Folder display settings Windows adds
+# .vscode/      - Personal VS Code settings; each teammate's editor setup differs
+# .idea/        - Personal PhpStorm / JetBrains settings (although doesn't exist right now, it may in the future)
+# .swp          - Temporary files Vim leaves while a file is open (although doesn't exist right now, it may in the future)
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
