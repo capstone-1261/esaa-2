@@ -34,3 +34,5 @@ function esaa_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'esaa_setup' );
+
+require get_template_directory() . '/inc/post-types.php';
