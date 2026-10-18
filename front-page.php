@@ -12,7 +12,7 @@ get_header(); ?>
 	<h1>Welcome to ESAA</h1>
 	<p>This is placeholder body text for testing the homepage.</p>
 
-	<h2>Hero Section</h2>
+	<h2>Student Voices, Real Changes</h2>
 	<p>The Edmonton Students Advocacy Association is a youth-led group, putting students in the rooms where decisions get made and fighting for a better future in education.</p>
 
 	<h3>What we do</h3>
