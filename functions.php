@@ -38,3 +38,5 @@ add_action( 'after_setup_theme', 'esaa_setup' );
 require get_template_directory() . '/inc/post-types.php';
 require get_template_directory() . '/inc/navigation.php';
 require get_template_directory() . '/inc/acf.php';
+require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/queries.php';
