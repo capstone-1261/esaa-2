@@ -1,0 +1,42 @@
+{
+    "key": "group_esaa_zine",
+    "title": "Zine details",
+    "fields": [
+        {
+            "key": "field_esaa_zine_byline",
+            "label": "By",
+            "name": "byline",
+            "type": "text",
+            "instructions": "Who made the zine. Shown as \"By ...\". For example: ESAA",
+            "required": 1,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_zine_pdf_file",
+            "label": "Zine PDF",
+            "name": "pdf_file",
+            "type": "file",
+            "instructions": "Upload your .pdf file here. Maximum file size is 10MB. A download button will be shown on the zine page.",
+            "required": 1,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "pdf"
+        }
+    ],
+    "location": [
+        [
+            { "param": "post_type", "operator": "==", "value": "zine" }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Byline and PDF for a zine. The description goes in the editor above.",
+    "show_in_rest": 0,
+    "modified": 1792108800
+}
