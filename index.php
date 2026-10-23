@@ -32,6 +32,12 @@ get_header(); ?>
 			}
 			?>
 		</h1>
+		<?php
+		// Zines, Interviews and Past Events use this file until they get their own templates.
+		if ( is_post_type_archive() ) {
+			esaa_the_archive_intro();
+		}
+		?>
 
 		<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : ?>

@@ -9,6 +9,7 @@ get_header(); ?>
 
 <main id="main">
 	<h1><?php post_type_archive_title(); ?></h1>
+	<?php esaa_the_archive_intro( 'event' ); ?>
 	
 	<?php if ( have_posts() ) : ?>
 		<ul class="card-grid">
