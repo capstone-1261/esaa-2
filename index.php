@@ -25,6 +25,9 @@ get_header(); ?>
 				printf( esc_html__( 'Search results for "%s"', 'esaa' ), esc_html( get_search_query( false ) ) );
 			} elseif ( is_404() ) {
 				esc_html_e( 'Page not found', 'esaa' );
+			} elseif ( is_post_type_archive() ) {
+				// Just the name ("Zines"); get_the_archive_title() would add an "Archives:" prefix.
+				post_type_archive_title();
 			} elseif ( is_archive() ) {
 				echo wp_kses_post( get_the_archive_title() );
 			} else {

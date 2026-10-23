@@ -7,7 +7,7 @@
  */
 
 // Bump this whenever a post type is added or a slug changes. Each site then rebuilds its permalinks once on its own.
-define( 'ESAA_REWRITE_VERSION', '1' );
+define( 'ESAA_REWRITE_VERSION', '2' );
 
 /**
  * Builds the admin labels for a post type from its singular and plural names.
@@ -50,6 +50,7 @@ function esaa_post_type_labels( $singular, $plural, $image ) {
  */
 function esaa_register_post_types() {
 	// Public types share these settings. Each gets an archive page at /{slug}/ and singles at /{slug}/{post}/.
+	// Zines, Interviews and Past Events live under /articles/ to match the sitemap (the Articles page is their hub).
 	$public = array(
 		'public'       => true,
 		'show_in_rest' => true,
@@ -74,9 +75,9 @@ function esaa_register_post_types() {
 		$public + array(
 			'labels'      => esaa_post_type_labels( __( 'Zine', 'esaa' ), __( 'Zines', 'esaa' ), __( 'Zine cover', 'esaa' ) ),
 			'menu_icon'   => 'dashicons-media-document',
-			'has_archive' => 'zines',
+			'has_archive' => 'articles/zines',
 			'rewrite'     => array(
-				'slug'       => 'zines',
+				'slug'       => 'articles/zines',
 				'with_front' => false,
 			),
 		)
@@ -87,9 +88,9 @@ function esaa_register_post_types() {
 		$public + array(
 			'labels'      => esaa_post_type_labels( __( 'Interview', 'esaa' ), __( 'Interviews', 'esaa' ), __( 'Video thumbnail', 'esaa' ) ),
 			'menu_icon'   => 'dashicons-video-alt3',
-			'has_archive' => 'interviews',
+			'has_archive' => 'articles/interviews',
 			'rewrite'     => array(
-				'slug'       => 'interviews',
+				'slug'       => 'articles/interviews',
 				'with_front' => false,
 			),
 		)
@@ -101,9 +102,9 @@ function esaa_register_post_types() {
 		$public + array(
 			'labels'      => esaa_post_type_labels( __( 'Past Event', 'esaa' ), __( 'Past Events', 'esaa' ), __( 'Write-up image', 'esaa' ) ),
 			'menu_icon'   => 'dashicons-format-aside',
-			'has_archive' => 'past-events',
+			'has_archive' => 'articles/past-events',
 			'rewrite'     => array(
-				'slug'       => 'past-events',
+				'slug'       => 'articles/past-events',
 				'with_front' => false,
 			),
 		)
