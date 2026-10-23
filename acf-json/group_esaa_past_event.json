@@ -1,0 +1,30 @@
+{
+    "key": "group_esaa_past_event",
+    "title": "Write-up details",
+    "fields": [
+        {
+            "key": "field_esaa_past_event_byline",
+            "label": "Written by",
+            "name": "byline",
+            "type": "text",
+            "instructions": "Shown next to the date. The date is the post's publish date, which you can change in the sidebar.",
+            "required": 1,
+            "wrapper": { "width": "", "class": "", "id": "" }
+        }
+    ],
+    "location": [
+        [
+            { "param": "post_type", "operator": "==", "value": "past_event" }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Author of a past event write-up. The write-up goes in the editor above.",
+    "show_in_rest": 0,
+    "modified": 1792108800
+}

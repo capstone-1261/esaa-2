@@ -1,0 +1,62 @@
+{
+    "key": "group_esaa_event",
+    "title": "Event details",
+    "fields": [
+        {
+            "key": "field_esaa_event_date",
+            "label": "Date",
+            "name": "event_date",
+            "type": "date_picker",
+            "instructions": "The event drops off the Events page the day after this date.",
+            "required": 1,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "display_format": "F j, Y",
+            "return_format": "Ymd",
+            "first_day": 0
+        },
+        {
+            "key": "field_esaa_event_start_time",
+            "label": "Start time",
+            "name": "start_time",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 1,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "display_format": "g:i a",
+            "return_format": "g:i A"
+        },
+        {
+            "key": "field_esaa_event_location_name",
+            "label": "Location name",
+            "name": "location_name",
+            "type": "text",
+            "instructions": "For example: Legislature grounds",
+            "required": 1,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_event_address",
+            "label": "Address",
+            "name": "address",
+            "type": "text",
+            "instructions": "Shown on the event page. For example: 10800 97 Ave NW, Edmonton AB",
+            "required": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        }
+    ],
+    "location": [
+        [
+            { "param": "post_type", "operator": "==", "value": "event" }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Date, time and place of an event. The description goes in the editor above.",
+    "show_in_rest": 0,
+    "modified": 1792108800
+}

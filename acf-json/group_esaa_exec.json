@@ -1,0 +1,57 @@
+{
+    "key": "group_esaa_exec",
+    "title": "Exec details",
+    "fields": [
+        {
+            "key": "field_esaa_exec_grade",
+            "label": "Grade",
+            "name": "grade",
+            "type": "text",
+            "instructions": "For example: Grade 11",
+            "required": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_exec_school",
+            "label": "School",
+            "name": "school",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_exec_email",
+            "label": "Email",
+            "name": "email",
+            "type": "email",
+            "instructions": "Shown under Team Contacts on the Contact Us page. Leave empty to hide this exec there.",
+            "required": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_exec_quote",
+            "label": "Quote",
+            "name": "quote",
+            "type": "text",
+            "instructions": "Short line shown in bold under the bio on the About Us page.",
+            "required": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        }
+    ],
+    "location": [
+        [
+            { "param": "post_type", "operator": "==", "value": "exec" }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Details shown on About Us and Contact Us. The bio goes in the editor above, the photo in Exec photo.",
+    "show_in_rest": 0,
+    "modified": 1792108800
+}
