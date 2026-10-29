@@ -1,0 +1,145 @@
+/*
+ * Base: page defaults, the layout container and grid, focus and screen reader helpers.
+ * Every value comes from a theme.json token (--wp--preset--* and --wp--custom--*), never a raw colour or size.
+ * Rules: CapstoneData/skills/esaa-design-rules/SKILL.md
+ */
+
+:root {
+	--esaa-header-height: 4.25rem; /* 68px mobile bar; 96px from 60em, set in header.css */
+	--focus-ring: var(--wp--preset--color--navy);
+	overflow-y: scroll;
+	/* Jumps (skip link, #anchors, keyboard focus) stop below the sticky header instead of behind it. */
+	scroll-padding-block-start: calc(var(--esaa-header-height) + var(--wp-admin--admin-bar--height, 0px) + var(--wp--preset--spacing--16));
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--text);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--step-0);
+	line-height: var(--wp--custom--line-height--body);
+}
+
+/*
+ * Footer stays at the bottom of the screen on short pages: the page is at least one screen tall and <main>
+ * takes the leftover space. Longer pages scroll as normal. svh is the screen height with the phone's browser
+ * bars showing (plain vh is the fallback), minus the WordPress admin bar when logged in.
+ */
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: calc(100svh - var(--wp-admin--admin-bar--height, 0px));
+}
+
+main {
+	flex-grow: 1;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--anton);
+	font-weight: 400;
+	line-height: var(--wp--custom--line-height--tight);
+}
+
+h1 {
+	font-size: var(--wp--preset--font-size--step-5);
+}
+
+h2 {
+	font-size: var(--wp--preset--font-size--step-4);
+}
+
+h3 {
+	font-size: var(--wp--preset--font-size--step-3);
+}
+
+a {
+	color: var(--wp--preset--color--navy);
+	text-underline-offset: 0.15em;
+}
+
+/* One focus style everywhere; dark regions (header, footer) switch the colour to gold. */
+:focus-visible {
+	outline: 3px solid var(--focus-ring);
+	outline-offset: 3px;
+}
+
+/* Page container: the 1440 frame has 120px margins (1200px content); 320 has 16px. */
+.container {
+	width: min(100% - 2 * var(--wp--custom--grid--margin), var(--wp--custom--grid--content-max));
+	margin-inline: auto;
+}
+
+/* Layout grid: 6 columns on mobile, 12 from 48em (768px), gutters 16px to 24px. */
+.grid {
+	display: grid;
+	grid-template-columns: repeat(var(--wp--custom--grid--columns-mobile), minmax(0, 1fr));
+	column-gap: var(--wp--custom--grid--gutter);
+}
+
+@media (min-width: 48em) {
+	.grid {
+		grid-template-columns: repeat(var(--wp--custom--grid--columns-desktop), minmax(0, 1fr));
+	}
+}
+
+/* Hidden visually but read by screen readers (WordPress's standard class name). */
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+.skip-link:focus {
+	inset-block-start: var(--wp--preset--spacing--8);
+	inset-inline-start: var(--wp--preset--spacing--8);
+	z-index: 100;
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	overflow: visible;
+	clip-path: none;
+	white-space: normal;
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--navy);
+	font-weight: 700;
+	box-shadow: var(--wp--custom--shadow--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+		transition-duration: 0.01ms;
+		scroll-behavior: auto;
+	}
+}
