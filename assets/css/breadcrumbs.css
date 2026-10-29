@@ -1,0 +1,43 @@
+/*
+ * Breadcrumbs: one small line above the page title, for example "Events / Youth Art Show" (lo-fi Events-Detailed).
+ * The list stays an ordered list for screen readers; it just doesn't look like one.
+ */
+
+.breadcrumbs {
+	margin-block: var(--wp--preset--spacing--40) var(--wp--preset--spacing--24);
+	font-size: var(--wp--preset--font-size--step-minus-1);
+}
+
+.breadcrumbs ol {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--4) var(--wp--preset--spacing--8);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.breadcrumbs li {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--8);
+}
+
+.breadcrumbs a {
+	color: var(--wp--preset--color--text);
+	text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+	color: var(--wp--preset--color--navy);
+	text-decoration: underline;
+}
+
+/* The last item is the page you're on: plain text in a darker colour, not styled as a link. */
+.breadcrumbs [aria-current="page"] {
+	color: var(--wp--preset--color--ink);
+}
+
+.breadcrumbs [aria-current="page"]:hover {
+	text-decoration: none;
+}

@@ -46,6 +46,7 @@ function esaa_enqueue_assets() {
 	wp_enqueue_style( 'esaa-base', $uri . '/assets/css/base.css', array(), (string) filemtime( $dir . '/assets/css/base.css' ) );
 	wp_enqueue_style( 'esaa-header', $uri . '/assets/css/header.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/header.css' ) );
 	wp_enqueue_style( 'esaa-footer', $uri . '/assets/css/footer.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/footer.css' ) );
+	wp_enqueue_style( 'esaa-breadcrumbs', $uri . '/assets/css/breadcrumbs.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/breadcrumbs.css' ) );
 
 	wp_enqueue_script(
 		'esaa-navigation',
