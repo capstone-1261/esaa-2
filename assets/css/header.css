@@ -1,0 +1,497 @@
+/*
+ * Site header: logo, primary navigation, Articles submenu, Contact Us button and search.
+ * Mobile first. Below 60em (960px) the menu sits in a panel opened by the Menu button.
+ * Without JavaScript (no .js class on <html>) everything stays visible and stacked.
+ * Specs: CapstoneData/skills/esaa-design-rules/references/tokens.md, section 5.
+ */
+
+.site-header {
+	--focus-ring: var(--wp--preset--color--gold);
+	position: relative;
+	z-index: 20;
+	border-block-end: 1px solid var(--wp--preset--color--ink);
+	background: var(--wp--preset--color--navy);
+	color: var(--wp--preset--color--white);
+}
+
+.site-header__bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--16);
+	padding-block: var(--wp--preset--spacing--12);
+}
+
+/* Logo: 44px on mobile, 72px on desktop. The link is the home link (alt text = site name). */
+.custom-logo-link,
+.site-title {
+	display: inline-flex;
+	flex-shrink: 0;
+	border-radius: 50%;
+}
+
+.custom-logo {
+	display: block;
+	width: 2.75rem;
+	height: auto;
+}
+
+.site-title {
+	color: var(--wp--preset--color--gold);
+	font-family: var(--wp--preset--font-family--anton);
+	font-size: var(--wp--preset--font-size--step-2);
+	text-decoration: none;
+}
+
+/* Menu button: mobile only, and only when JavaScript can open the panel. */
+.menu-toggle {
+	display: none;
+}
+
+.js .menu-toggle {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--4);
+	min-width: 3rem;
+	min-height: 3rem;
+	padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--8);
+	border: 0;
+	background: none;
+	color: var(--wp--preset--color--gold);
+	font: inherit;
+	font-size: var(--wp--preset--font-size--step-minus-1);
+	line-height: 1.25;
+	cursor: pointer;
+}
+
+.menu-toggle[aria-expanded="true"] {
+	color: var(--wp--preset--color--white);
+}
+
+/* Two bars that turn into an X when the menu is open. */
+.menu-toggle__icon {
+	position: relative;
+	width: 1.5rem;
+	height: 0.625rem;
+}
+
+.menu-toggle__icon::before,
+.menu-toggle__icon::after {
+	position: absolute;
+	inset-inline: 0;
+	height: 2px;
+	border-radius: 1px;
+	background: currentColor;
+	content: "";
+	transition: inset-block-start 0.2s ease, transform 0.2s ease;
+}
+
+.menu-toggle__icon::before {
+	inset-block-start: 0;
+}
+
+.menu-toggle__icon::after {
+	inset-block-start: 0.5rem;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::before,
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::after {
+	inset-block-start: 0.25rem;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::before {
+	transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon::after {
+	transform: rotate(-45deg);
+}
+
+/* Menu panel. Without JavaScript it wraps under the bar; with it, it opens from the right. */
+.site-menu {
+	flex-basis: 100%;
+}
+
+.js .site-menu {
+	position: absolute;
+	inset-block-start: 100%;
+	inset-inline-end: 0;
+	display: none;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--8);
+	width: min(16rem, 85vw);
+	max-height: calc(100dvh - var(--esaa-header-height) - var(--wp-admin--admin-bar--height, 0px));
+	padding: var(--wp--preset--spacing--8) var(--wp--preset--spacing--16) var(--wp--preset--spacing--24);
+	overflow-y: auto;
+	background: var(--wp--preset--color--navy);
+}
+
+.menu-open .site-menu {
+	display: flex;
+}
+
+/* Page scroll is locked while the menu panel or search bar covers the page; the backdrop (added by navigation.js) closes it. */
+.page-covered {
+	overflow: hidden;
+}
+
+.menu-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 10;
+	background: color-mix(in srgb, var(--wp--preset--color--ink) 50%, transparent);
+}
+
+/* Navigation list (mobile rows) */
+.primary-nav__list,
+.primary-nav__list .sub-menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.primary-nav__list li {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	border-block-end: 1px solid var(--wp--preset--color--white);
+}
+
+.primary-nav__list .sub-menu {
+	grid-column: 1 / -1;
+	border-block-start: 1px solid var(--wp--preset--color--white);
+}
+
+.primary-nav__list .sub-menu li:last-child {
+	border-block-end: 0;
+}
+
+.primary-nav a {
+	display: block;
+	padding: var(--wp--preset--spacing--16) var(--wp--preset--spacing--8);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--anton);
+	font-size: var(--wp--preset--font-size--step-1);
+	line-height: 1.2;
+	text-decoration: none;
+}
+
+.primary-nav .sub-menu a {
+	padding-inline-start: var(--wp--preset--spacing--32);
+}
+
+.primary-nav a:hover {
+	color: var(--wp--preset--color--gold);
+}
+
+/* "You are here": gold text in the panel (the desktop bar uses the paper strip below). */
+.primary-nav .current-menu-item > a,
+.primary-nav .current-menu-ancestor > a,
+.primary-nav .is-current-section > a {
+	color: var(--wp--preset--color--gold);
+}
+
+/* Submenu toggle (Articles): only shown when JavaScript can run it; otherwise the submenu stays open. */
+.submenu-toggle {
+	display: none;
+}
+
+.js .submenu-toggle {
+	display: inline-grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--wp--preset--color--white);
+	cursor: pointer;
+}
+
+.submenu-toggle .icon {
+	transition: transform 0.2s ease;
+}
+
+.submenu-toggle[aria-expanded="true"] .icon {
+	transform: rotate(180deg);
+}
+
+.js .primary-nav__list .sub-menu {
+	display: none;
+}
+
+.js .primary-nav__list .is-open > .sub-menu {
+	display: block;
+}
+
+/* Contact Us: the call-to-action button (white paper with a gold shadow). */
+.primary-nav .menu-cta {
+	margin-block-start: var(--wp--preset--spacing--8);
+	border: 0;
+}
+
+.primary-nav .menu-cta > a {
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--navy);
+	text-align: center;
+	text-transform: uppercase;
+	box-shadow: var(--wp--custom--shadow--paper);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-nav .menu-cta > a:hover {
+	color: var(--wp--preset--color--navy);
+	box-shadow: var(--wp--custom--shadow--paper-raised);
+	transform: translate(-2px, -2px);
+}
+
+.primary-nav .menu-cta.current-menu-item > a {
+	background: var(--wp--preset--color--gold);
+	color: var(--wp--preset--color--navy);
+}
+
+/* Search: always visible in the mobile panel; on desktop it opens from the search button. */
+.search-toggle {
+	display: none;
+}
+
+/* In the mobile panel the search form fills the panel width, so the page container rule doesn't apply. */
+@media (width < 60em) {
+	.site-search__panel .container {
+		width: auto;
+	}
+}
+
+.search-form {
+	position: relative;
+	display: flex;
+	margin-block-start: var(--wp--preset--spacing--8);
+}
+
+.search-form__field {
+	width: 100%;
+	min-height: 3rem;
+	padding: var(--wp--preset--spacing--8) 3rem var(--wp--preset--spacing--8) var(--wp--preset--spacing--16);
+	border: 1px solid var(--wp--preset--color--ink);
+	border-radius: var(--wp--custom--radius--field);
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--ink);
+	font: inherit;
+}
+
+/* Placeholder is a hint only, but still meets 4.5:1 (Figma's Wisteria Blue was 2.83:1). */
+.search-form__field::placeholder {
+	color: var(--wp--preset--color--text);
+	opacity: 1;
+}
+
+.search-form__submit {
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: 0;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--wp--preset--color--navy);
+	cursor: pointer;
+}
+
+/* Desktop: 60em (960px) and wider, where the full menu fits beside the logo. */
+@media (min-width: 60em) {
+	:root {
+		--esaa-header-height: 6rem;
+	}
+
+	.custom-logo {
+		width: 4.5rem;
+	}
+
+	.js .menu-toggle {
+		display: none;
+	}
+
+	.site-menu,
+	.js .site-menu {
+		position: static;
+		display: flex;
+		flex-basis: auto;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--wp--preset--spacing--8);
+		width: auto;
+		max-height: none;
+		padding: 0;
+		overflow: visible;
+		background: none;
+	}
+
+	/* Gap grows from 8px at 960px to 24px at 1440px (40px between labels in Figma, links add 16px). */
+	.primary-nav__list {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.5rem, -1.5rem + 3.333vw, 1.5rem);
+	}
+
+	.primary-nav__list li {
+		display: flex;
+		position: relative;
+		border: 0;
+	}
+
+	.primary-nav__list > li > a {
+		padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--8);
+		text-transform: uppercase;
+	}
+
+	/* Hover and keyboard focus share one style; the current page gets the paper strip (a different style). */
+	.primary-nav__list > li > a:hover,
+	.primary-nav__list > li > a:focus-visible {
+		color: var(--wp--preset--color--gold);
+		text-decoration: underline;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 6px;
+	}
+
+	.primary-nav__list > .current-menu-item:not(.menu-cta) > a,
+	.primary-nav__list > .current-menu-ancestor > a,
+	.primary-nav__list > .is-current-section > a {
+		position: relative;
+		isolation: isolate;
+		color: var(--wp--preset--color--navy);
+		transform: rotate(-1.5deg);
+	}
+
+	.primary-nav__list > .current-menu-item:not(.menu-cta) > a::before,
+	.primary-nav__list > .current-menu-ancestor > a::before,
+	.primary-nav__list > .is-current-section > a::before {
+		position: absolute;
+		inset: 0.6875rem 0;
+		z-index: -1;
+		background: var(--wp--preset--color--gold);
+		content: "";
+	}
+
+	.primary-nav__list > .current-menu-item:not(.menu-cta) > a:hover,
+	.primary-nav__list > .current-menu-ancestor > a:hover,
+	.primary-nav__list > .is-current-section > a:hover {
+		color: var(--wp--preset--color--navy);
+	}
+
+	.js .submenu-toggle {
+		width: 2.75rem;
+		margin-inline-start: -0.5rem;
+	}
+
+	/* Articles dropdown. It stays open 300ms after the pointer leaves, so small slips don't close it. */
+	.primary-nav__list .sub-menu,
+	.js .primary-nav__list .sub-menu {
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline-start: 0;
+		display: block;
+		min-width: 13rem;
+		padding-block: var(--wp--preset--spacing--8);
+		border: 0;
+		background: var(--wp--preset--color--navy);
+		box-shadow: var(--wp--custom--shadow--paper);
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.15s ease 0.15s, visibility 0s linear 0.3s;
+	}
+
+	.primary-nav__list .sub-menu li {
+		display: block;
+	}
+
+	.primary-nav__list .sub-menu a {
+		padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+		text-transform: uppercase;
+	}
+
+	.primary-nav__list .sub-menu a:hover,
+	.primary-nav__list .sub-menu a:focus-visible {
+		color: var(--wp--preset--color--gold);
+		text-decoration: underline;
+		text-underline-offset: 6px;
+	}
+
+	.js .primary-nav__list .is-open > .sub-menu,
+	html:not(.js) .primary-nav__list li:focus-within > .sub-menu {
+		visibility: visible;
+		opacity: 1;
+		transition-delay: 0s;
+	}
+
+	@media (hover: hover) {
+		.primary-nav__list li:hover:not(.is-hover-suppressed) > .sub-menu {
+			visibility: visible;
+			opacity: 1;
+			transition-delay: 0s;
+		}
+	}
+
+	.primary-nav .menu-cta {
+		margin-block-start: 0;
+		margin-inline-start: var(--wp--preset--spacing--8);
+	}
+
+	/*
+	 * Search: icon with a visible "Search" label (like the Menu button). It opens a full-width bar under the
+	 * header with the field on the content grid, and a dim overlay covers the rest of the page (lo-fi design).
+	 */
+	.js .search-toggle {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: var(--wp--preset--spacing--4);
+		min-width: 3rem;
+		min-height: 3rem;
+		padding: var(--wp--preset--spacing--4) var(--wp--preset--spacing--8);
+		border: 0;
+		background: none;
+		color: var(--wp--preset--color--white);
+		font: inherit;
+		font-size: var(--wp--preset--font-size--step-minus-1);
+		line-height: 1.25;
+		cursor: pointer;
+	}
+
+	.js .search-toggle:hover,
+	.js .search-toggle[aria-expanded="true"] {
+		color: var(--wp--preset--color--gold);
+	}
+
+	.js .site-search__panel {
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline: 0;
+		display: none;
+		padding-block: var(--wp--preset--spacing--16);
+		border-block-start: 1px solid var(--wp--preset--color--ink);
+		background: var(--wp--preset--color--navy);
+	}
+
+	.js .site-search.is-open .site-search__panel {
+		display: block;
+	}
+
+	.site-search__panel .search-form {
+		margin-block-start: 0;
+	}
+
+	.js .site-search__panel .search-form__field {
+		border-color: var(--wp--preset--color--white);
+	}
+
+	html:not(.js) .site-search__panel {
+		width: 14rem;
+	}
+}
