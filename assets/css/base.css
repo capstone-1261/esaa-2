@@ -7,7 +7,9 @@
 :root {
 	--esaa-header-height: 4.25rem; /* 68px mobile bar; 96px from 60em, set in header.css */
 	--focus-ring: var(--wp--preset--color--navy);
-	overflow-y: scroll; 
+	overflow-y: scroll;
+	/* Jumps (skip link, #anchors, keyboard focus) stop below the sticky header instead of behind it. */
+	scroll-padding-block-start: calc(var(--esaa-header-height) + var(--wp-admin--admin-bar--height, 0px) + var(--wp--preset--spacing--16));
 }
 
 *,
