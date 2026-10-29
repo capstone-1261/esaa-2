@@ -249,9 +249,15 @@
 	transform: translate(-2px, -2px);
 }
 
+/* On the Contact Us page the button turns gold, so its shadow turns white to stay visible. */
 .primary-nav .menu-cta.current-menu-item > a {
 	background: var(--wp--preset--color--gold);
 	color: var(--wp--preset--color--navy);
+	box-shadow: 4px 4px 0 var(--wp--preset--color--white);
+}
+
+.primary-nav .menu-cta.current-menu-item > a:hover {
+	box-shadow: 6px 6px 0 var(--wp--preset--color--white);
 }
 
 /* Search: always visible in the mobile panel; on desktop it opens from the search button. */
@@ -389,21 +395,36 @@
 		margin-inline-start: -0.5rem;
 	}
 
-	/* Articles dropdown. It stays open 300ms after the pointer leaves, so small slips don't close it. */
+	/*
+	 * Articles dropdown: opens right under the header (like the search bar), right-aligned with the Articles
+	 * item so it stays clear of the Contact Us button. The nav item is 3rem tall and centred in the header,
+	 * so the gap down to the header's bottom edge is half the difference. It stays open 300ms after the
+	 * pointer leaves, so small slips don't close it.
+	 */
 	.primary-nav__list .sub-menu,
 	.js .primary-nav__list .sub-menu {
 		position: absolute;
-		inset-block-start: 100%;
-		inset-inline-start: 0;
+		inset-block-start: calc(100% + (var(--esaa-header-height) - 3rem) / 2);
+		inset-inline-end: 0;
 		display: block;
 		min-width: 13rem;
 		padding-block: var(--wp--preset--spacing--8);
 		border: 0;
+		border-block-start: 1px solid var(--wp--preset--color--ink);
 		background: var(--wp--preset--color--navy);
 		box-shadow: var(--wp--custom--shadow--paper);
 		visibility: hidden;
 		opacity: 0;
 		transition: opacity 0.15s ease 0.15s, visibility 0s linear 0.3s;
+	}
+
+	/* Invisible bridge over the gap, so moving the pointer down from "Articles" keeps the dropdown open. */
+	.primary-nav__list .sub-menu::before {
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 100%;
+		height: calc((var(--esaa-header-height) - 3rem) / 2 + 1px);
+		content: "";
 	}
 
 	.primary-nav__list .sub-menu li {
