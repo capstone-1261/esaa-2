@@ -1,0 +1,88 @@
+{
+    "key": "group_esaa_home",
+    "title": "Home page",
+    "fields": [
+        {
+            "key": "field_esaa_home_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_esaa_home_hero_heading",
+            "label": "Heading",
+            "name": "hero_heading",
+            "type": "text",
+            "instructions": "First line of the big heading at the top of the page. Leave empty to show \"Student voices,\".",
+            "placeholder": "Student voices,",
+            "maxlength": 40,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_hero_highlight",
+            "label": "Highlighted line",
+            "name": "hero_highlight",
+            "type": "text",
+            "instructions": "Second line, shown in orange. Leave empty to show \"real changes\".",
+            "placeholder": "real changes",
+            "maxlength": 40,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_hero_text",
+            "label": "Intro",
+            "name": "hero_text",
+            "type": "textarea",
+            "instructions": "One or two sentences about ESAA under the heading.",
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": 300
+        },
+        {
+            "key": "field_esaa_home_hero_image",
+            "label": "Photo",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "A landscape photo, at least 1600px wide (JPG or WebP). Describe it in the Alt Text box in the media library.",
+            "return_format": "id",
+            "library": "all",
+            "preview_size": "medium",
+            "mime_types": "jpg, jpeg, png, webp"
+        },
+        {
+            "key": "field_esaa_home_hero_primary_link",
+            "label": "Main button",
+            "name": "hero_primary_link",
+            "type": "link",
+            "instructions": "Leave empty for \"View upcoming events\", linking to the Events page.",
+            "return_format": "array",
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_hero_secondary_link",
+            "label": "Second button",
+            "name": "hero_secondary_link",
+            "type": "link",
+            "instructions": "Leave empty for \"Learn more\", linking to About Us.",
+            "return_format": "array",
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        }
+    ],
+    "location": [
+        [
+            { "param": "page_type", "operator": "==", "value": "front_page" }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Content of the home page, section by section. Empty fields show the default text.",
+    "show_in_rest": 0,
+    "modified": 1794787200
+}

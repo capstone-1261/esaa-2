@@ -1,9 +1,43 @@
 <?php
 /**
- * Small helpers templates use to print dates and other values.
+ * Small helpers templates use to print dates, buttons and other values.
  *
  * @package esaa
  */
+
+/**
+ * Returns the address of a page from its slug, for example "about-us", or the address it will have
+ * once the page is created.
+ *
+ * @param string $path Page slug or path, for example "about-us" or "articles".
+ * @return string
+ */
+function esaa_page_url( $path ) {
+	$page = get_page_by_path( $path );
+	return $page ? get_permalink( $page ) : home_url( '/' . $path . '/' );
+}
+
+/**
+ * Prints a link styled as a button. Takes an ACF link field (url, title, target) and falls back to
+ * $fallback for whatever the field leaves empty.
+ *
+ * @param array|null $link     ACF link field value.
+ * @param array      $fallback Default url and title.
+ * @param string     $modifier Extra class, for example "button--gold".
+ */
+function esaa_the_button( $link, $fallback, $modifier = '' ) {
+	$link = is_array( $link ) ? $link : array();
+	$url  = ! empty( $link['url'] ) ? $link['url'] : $fallback['url'];
+	$text = ! empty( $link['title'] ) ? $link['title'] : $fallback['title'];
+
+	printf(
+		'<a class="%s" href="%s"%s>%s</a>',
+		esc_attr( trim( 'button ' . $modifier ) ),
+		esc_url( $url ),
+		! empty( $link['target'] ) ? ' target="_blank" rel="noopener"' : '',
+		esc_html( $text )
+	);
+}
 
 /**
  * Returns today's date as Ymd in the site's timezone (Settings > General), the format ACF stores dates in.

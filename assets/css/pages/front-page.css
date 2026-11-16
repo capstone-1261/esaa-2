@@ -1,0 +1,94 @@
+/*
+ * Home page (front-page.php), loaded only on that page. Hi-Fi: Figma, Playground page, frames "Home" (1440)
+ * and "Home - Mobile High-fi" (320). Shared pieces (buttons, dotted background) are in components.css.
+ */
+
+/* Hero: heading, intro, two buttons and a photo in a tilted white frame. Stacked on phones, side by side from 60em. */
+.hero {
+	padding-block: var(--wp--custom--section-space) calc(var(--wp--custom--section-space) + var(--wp--preset--spacing--16));
+	background-color: var(--wp--preset--color--cream);
+}
+
+.hero__inner {
+	display: grid;
+	gap: var(--wp--preset--spacing--32);
+	align-items: center;
+}
+
+.hero__title {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--step-6);
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+/* Second line of the heading. Orange passes contrast only as large text (3.7:1 on cream), which this always is. */
+.hero__highlight {
+	display: block;
+	color: var(--wp--preset--color--orange);
+}
+
+.hero__text {
+	max-width: var(--wp--custom--measure);
+	margin-block: var(--wp--preset--spacing--16) 0;
+	font-size: var(--wp--preset--font-size--step-1);
+	line-height: 1.5;
+}
+
+.hero__actions {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--16);
+	margin-block-start: var(--wp--preset--spacing--24);
+}
+
+.hero__media {
+	margin: 0;
+	padding: var(--wp--preset--spacing--8);
+	border: 1px solid var(--wp--preset--color--ink);
+	background: var(--wp--preset--color--white);
+	box-shadow: var(--wp--custom--shadow--offset) var(--wp--preset--color--ink);
+	transform: rotate(1deg);
+}
+
+.hero__image {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+@media (min-width: 30em) {
+	.hero__actions {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.hero__image {
+		aspect-ratio: 4 / 3;
+	}
+}
+
+@media (min-width: 60em) {
+	.hero__inner {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: var(--wp--custom--grid--gutter);
+	}
+
+	.hero__media {
+		padding: var(--wp--preset--spacing--12);
+		transform: rotate(-1deg);
+	}
+
+	.hero__image {
+		aspect-ratio: 8 / 5;
+	}
+}
+
+/* From 75em the photo takes the wider column, as in the 1440 frame (5 + 7 of the 12 columns). */
+@media (min-width: 75em) {
+	.hero__inner {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	}
+}

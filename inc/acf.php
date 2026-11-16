@@ -19,6 +19,33 @@ function esaa_field( $selector, $post_id = false ) {
 }
 
 /**
+ * Reads an ACF field, or returns a fallback when the field is empty, so a page still reads well before
+ * its content is filled in (used for the home page text).
+ *
+ * @param string    $selector Field name.
+ * @param mixed     $fallback Value to use when the field is empty.
+ * @param int|false $post_id  Post ID. Defaults to the current post.
+ * @return mixed
+ */
+function esaa_field_or( $selector, $fallback, $post_id = false ) {
+	$value = esaa_field( $selector, $post_id );
+	return $value ? $value : $fallback;
+}
+
+/**
+ * Hides the content editor on the page set as the home page. That page is built from its "Home page" fields,
+ * so the editor would only be a box whose text never shows.
+ */
+function esaa_hide_front_page_editor() {
+	$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- only reads which page is being edited.
+
+	if ( $post_id && (int) get_option( 'page_on_front' ) === $post_id ) {
+		remove_post_type_support( 'page', 'editor' );
+	}
+}
+add_action( 'admin_init', 'esaa_hide_front_page_editor' );
+
+/**
  * Hides ACF's field group editor outside local sites. Changes made on staging would be
  * overwritten by the next deploy, because acf-json/ is uploaded from Git.
  *

@@ -47,6 +47,7 @@ function esaa_enqueue_assets() {
 	wp_enqueue_style( 'esaa-header', $uri . '/assets/css/header.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/header.css' ) );
 	wp_enqueue_style( 'esaa-footer', $uri . '/assets/css/footer.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/footer.css' ) );
 	wp_enqueue_style( 'esaa-breadcrumbs', $uri . '/assets/css/breadcrumbs.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/breadcrumbs.css' ) );
+	wp_enqueue_style( 'esaa-components', $uri . '/assets/css/components.css', array( 'esaa-base' ), (string) filemtime( $dir . '/assets/css/components.css' ) );
 
 	wp_enqueue_script(
 		'esaa-navigation',
@@ -60,6 +61,23 @@ function esaa_enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'esaa_enqueue_assets' );
+
+/**
+ * Loads the stylesheet for the template being shown, if it has one: assets/css/pages/<template>.css, for example
+ * pages/front-page.css for front-page.php or pages/archive-event.css for archive-event.php. Each page keeps its
+ * styles in its own file, and adding one needs no change here.
+ */
+function esaa_enqueue_page_style() {
+	global $template;
+
+	$name = $template ? basename( $template, '.php' ) : '';
+	$file = '/assets/css/pages/' . $name . '.css';
+
+	if ( $name && file_exists( get_template_directory() . $file ) ) {
+		wp_enqueue_style( 'esaa-page-' . $name, get_template_directory_uri() . $file, array( 'esaa-components' ), (string) filemtime( get_template_directory() . $file ) );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'esaa_enqueue_page_style', 20 );
 
 /**
  * Adds a "js" class to <html> before anything renders, so CSS can hide things (like the mobile menu panel)

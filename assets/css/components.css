@@ -1,0 +1,52 @@
+/*
+ * Shared components used on more than one page: buttons and the dotted paper background.
+ * Page-only layout goes in assets/css/pages/<template>.css. Tokens come from theme.json.
+ * Rules: CapstoneData/skills/esaa-design-rules/SKILL.md
+ */
+
+/*
+ * Buttons: Anton label in capitals, at least 48px tall, a hard offset shadow with no blur. Navy with a gold
+ * label is the default; .button--gold swaps them. Use <a> to go somewhere and <button> to do something.
+ */
+.button {
+	--button-shadow: var(--wp--preset--color--gold);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 3rem;
+	padding: var(--wp--preset--spacing--12) var(--wp--preset--spacing--16);
+	border: 0;
+	background: var(--wp--preset--color--navy);
+	color: var(--wp--preset--color--gold);
+	font-family: var(--wp--preset--font-family--anton);
+	font-size: var(--wp--preset--font-size--step-1);
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	box-shadow: var(--wp--custom--shadow--offset) var(--button-shadow);
+	cursor: pointer;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+	color: var(--wp--preset--color--gold);
+	box-shadow: var(--wp--custom--shadow--offset-raised) var(--button-shadow);
+	transform: translate(-2px, -2px);
+}
+
+.button--gold {
+	--button-shadow: var(--wp--preset--color--navy);
+	background: var(--wp--preset--color--gold);
+	color: var(--wp--preset--color--navy);
+}
+
+.button--gold:hover {
+	color: var(--wp--preset--color--navy);
+}
+
+/* Dotted paper: 3px ink dots at 10% on an 18px grid (Figma "Doted Lines"), over the section's own colour. */
+.has-dots {
+	background-image: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--ink) 10%, transparent) 1.5px, transparent 2px);
+	background-size: 18px 18px;
+}
