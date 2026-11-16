@@ -92,3 +92,76 @@
 		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
 	}
 }
+
+/*
+ * Change Starts Here: heading, a photo, the What We Do and Why It Matters tiles and a Learn more button.
+ * The extra space on top leaves room for the slogan banner, which overlaps this section.
+ */
+.change {
+	padding-block: calc(var(--wp--custom--section-space) + var(--wp--preset--spacing--24)) var(--wp--custom--section-space);
+	background-color: var(--wp--preset--color--white);
+}
+
+.change__title {
+	margin: 0 0 var(--wp--preset--spacing--32);
+	color: var(--wp--preset--color--navy);
+	font-size: var(--wp--preset--font-size--step-5);
+	letter-spacing: -0.012em;
+	text-wrap: balance;
+}
+
+.change__body {
+	display: grid;
+	gap: var(--wp--preset--spacing--32);
+}
+
+.change__media {
+	margin: 0;
+}
+
+.change__image {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 10;
+	object-fit: cover;
+	border: 1px solid var(--wp--preset--color--ink);
+}
+
+/* Tiles stretch to the column; the button sits centred under them on phones and on the left from 60em. */
+.change__tiles {
+	display: grid;
+	gap: var(--wp--preset--spacing--24);
+	justify-items: center;
+}
+
+.change__tiles .tile {
+	justify-self: stretch;
+}
+
+@media (min-width: 60em) {
+	.change__title {
+		margin-block-end: var(--wp--preset--spacing--40);
+	}
+
+	.change__body {
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+		column-gap: var(--wp--custom--grid--gutter);
+	}
+
+	/* The photo matches the height of the tiles column next to it. */
+	.change__media,
+	.change__image {
+		height: 100%;
+	}
+
+	.change__image {
+		aspect-ratio: auto;
+	}
+
+	.change__tiles {
+		gap: var(--wp--preset--spacing--32);
+		align-content: center;
+		justify-items: start;
+	}
+}

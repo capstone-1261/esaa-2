@@ -45,6 +45,39 @@
 	color: var(--wp--preset--color--navy);
 }
 
+/* Paper tile: a note card with a hard black shadow and a slight tilt. Cream by default, .tile--gold for gold. */
+.tile {
+	padding: var(--wp--preset--spacing--16);
+	border: 2px solid var(--wp--preset--color--ink);
+	background: var(--wp--preset--color--cream);
+	box-shadow: var(--wp--custom--shadow--offset) var(--wp--preset--color--ink);
+	transform: rotate(-1deg);
+}
+
+.tile--gold {
+	background: var(--wp--preset--color--gold);
+	transform: rotate(1deg);
+}
+
+.tile__title {
+	margin: 0 0 var(--wp--preset--spacing--8);
+	font-size: var(--wp--preset--font-size--step-3);
+}
+
+.tile p {
+	margin: 0;
+}
+
+.tile p + p {
+	margin-block-start: var(--wp--preset--spacing--16);
+}
+
+@media (min-width: 60em) {
+	.tile {
+		padding: var(--wp--preset--spacing--24);
+	}
+}
+
 /* Dotted paper: 3px ink dots at 10% on an 18px grid (Figma "Doted Lines"), over the section's own colour. */
 .has-dots {
 	background-image: radial-gradient(circle, color-mix(in srgb, var(--wp--preset--color--ink) 10%, transparent) 1.5px, transparent 2px);

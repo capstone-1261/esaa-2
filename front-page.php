@@ -7,8 +7,9 @@
  * @package esaa
  */
 
-$esaa_slogans    = esaa_setting_lines( 'banner_slogans' );
-$esaa_hero_image = esaa_field( 'hero_image' );
+$esaa_slogans      = esaa_setting_lines( 'banner_slogans' );
+$esaa_hero_image   = esaa_field( 'hero_image' );
+$esaa_change_image = esaa_field( 'change_image' );
 
 get_header(); ?>
 
@@ -74,14 +75,57 @@ get_header(); ?>
 				</ul>
 			</section>
 		<?php endif; ?>
-
-		<h3>What we do</h3>
-		<p>We represented the voice of students across Edmonton through demonstrations, advocacy, community events and student art showcases.</p>
-		<p>By fighting and pushing for what we need in schools, anyone can have the chance to live and learn in an inclusive and productive environment.</p>
-	
-		<h3>Why it matters</h3>
-		<p>We believe that despite being a contention point, students' voices and opinions are often left out of discussions, and we strive to change that.</p>
 	</div>
+
+	<section class="change has-dots" aria-labelledby="change-title">
+		<div class="container">
+			<h2 id="change-title" class="change__title"><?php echo esc_html( esaa_field_or( 'change_heading', __( 'Change Starts Here', 'esaa' ) ) ); ?></h2>
+
+			<div class="change__body">
+				<?php if ( $esaa_change_image ) : ?>
+					<figure class="change__media">
+						<?php
+						echo wp_get_attachment_image(
+							$esaa_change_image,
+							'large',
+							false,
+							array(
+								'class' => 'change__image',
+								'sizes' => '(min-width: 90em) 486px, (min-width: 60em) 34vw, 100vw',
+							)
+						);
+						?>
+					</figure>
+				<?php endif; ?>
+
+				<div class="change__tiles">
+					<div class="tile tile--gold">
+						<h3 class="tile__title"><?php esc_html_e( 'What We Do', 'esaa' ); ?></h3>
+						<?php
+						$esaa_what = esaa_field_or( 'what_we_do', __( 'We represented the voice of students across Edmonton through demonstrations, advocacy, community events and student art showcases.', 'esaa' ) . "\n\n" . __( 'By fighting and pushing for what we need in schools, anyone can have the chance to live and learn in an inclusive and productive environment.', 'esaa' ) );
+						echo wp_kses_post( wpautop( esc_html( $esaa_what ) ) );
+						?>
+					</div>
+					<div class="tile">
+						<h3 class="tile__title"><?php esc_html_e( 'Why It Matters', 'esaa' ); ?></h3>
+						<?php
+						$esaa_why = esaa_field_or( 'why_it_matters', __( "We believe that despite being a contention point, students' voices and opinions are often left out of discussions, and we strive to change that.", 'esaa' ) );
+						echo wp_kses_post( wpautop( esc_html( $esaa_why ) ) );
+						?>
+					</div>
+					<?php
+					esaa_the_button(
+						esaa_field( 'change_link' ),
+						array(
+							'url'   => esaa_page_url( 'about-us' ),
+							'title' => __( 'Learn more', 'esaa' ),
+						)
+					);
+					?>
+				</div>
+			</div>
+		</div>
+	</section>
 </main>
 
 <?php get_footer(); ?>

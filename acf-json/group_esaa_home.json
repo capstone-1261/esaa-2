@@ -68,6 +68,64 @@
             "instructions": "Leave empty for \"Learn more\", linking to About Us.",
             "return_format": "array",
             "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_tab_change",
+            "label": "Change Starts Here",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_esaa_home_change_heading",
+            "label": "Heading",
+            "name": "change_heading",
+            "type": "text",
+            "instructions": "Leave empty to show \"Change Starts Here\".",
+            "placeholder": "Change Starts Here",
+            "maxlength": 40
+        },
+        {
+            "key": "field_esaa_home_change_image",
+            "label": "Photo",
+            "name": "change_image",
+            "type": "image",
+            "instructions": "A photo of members or an event, at least 1200px wide. Describe it in the Alt Text box in the media library.",
+            "return_format": "id",
+            "library": "all",
+            "preview_size": "medium",
+            "mime_types": "jpg, jpeg, png, webp"
+        },
+        {
+            "key": "field_esaa_home_what_we_do",
+            "label": "What We Do",
+            "name": "what_we_do",
+            "type": "textarea",
+            "instructions": "Leave a blank line between paragraphs.",
+            "rows": 5,
+            "new_lines": "",
+            "maxlength": 600,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_why_it_matters",
+            "label": "Why It Matters",
+            "name": "why_it_matters",
+            "type": "textarea",
+            "instructions": "Leave a blank line between paragraphs.",
+            "rows": 5,
+            "new_lines": "",
+            "maxlength": 600,
+            "wrapper": { "width": "50", "class": "", "id": "" }
+        },
+        {
+            "key": "field_esaa_home_change_link",
+            "label": "Button",
+            "name": "change_link",
+            "type": "link",
+            "instructions": "Leave empty for \"Learn more\", linking to About Us.",
+            "return_format": "array"
         }
     ],
     "location": [
