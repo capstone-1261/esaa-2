@@ -365,38 +365,40 @@
 		text-transform: uppercase;
 	}
 
-	/* Hover and keyboard focus share one style; the current page gets the paper strip (a different style). */
-	.primary-nav__list > li > a:hover,
-	.primary-nav__list > li > a:focus-visible {
-		color: var(--wp--preset--color--gold);
-		text-decoration: underline;
-		text-decoration-thickness: 2px;
-		text-underline-offset: 6px;
-	}
-
-	.primary-nav__list > .current-menu-item:not(.menu-cta) > a,
-	.primary-nav__list > .current-menu-ancestor > a,
-	.primary-nav__list > .is-current-section > a {
+	/*
+	 * Paper strip (Figma: Home nav item, "while hovering", smart animate 300ms linear). Every page link has a gold
+	 * strip behind it, hidden until needed. The current page shows it, tilted -2deg. Hovering or focusing another
+	 * page brings the strip in with a quick turn to -2deg; hovering the current page only turns it back to straight.
+	 */
+	.primary-nav__list > li:not(.menu-cta) > a {
 		position: relative;
 		isolation: isolate;
-		color: var(--wp--preset--color--navy);
-		transform: rotate(-1.5deg);
+		transition: color 0.3s linear, transform 0.3s linear;
 	}
 
-	.primary-nav__list > .current-menu-item:not(.menu-cta) > a::before,
-	.primary-nav__list > .current-menu-ancestor > a::before,
-	.primary-nav__list > .is-current-section > a::before {
+	.primary-nav__list > li:not(.menu-cta) > a::before {
 		position: absolute;
 		inset: 0.6875rem 0;
 		z-index: -1;
 		background: var(--wp--preset--color--gold);
 		content: "";
+		opacity: 0;
+		transition: opacity 0.3s linear;
 	}
 
-	.primary-nav__list > .current-menu-item:not(.menu-cta) > a:hover,
-	.primary-nav__list > .current-menu-ancestor > a:hover,
-	.primary-nav__list > .is-current-section > a:hover {
+	.primary-nav__list > li:not(.menu-cta) > a:is(:hover, :focus-visible),
+	.primary-nav__list > li:is(.current-menu-item, .current-menu-ancestor, .is-current-section):not(.menu-cta) > a {
 		color: var(--wp--preset--color--navy);
+		transform: rotate(-2deg);
+	}
+
+	.primary-nav__list > li:not(.menu-cta) > a:is(:hover, :focus-visible)::before,
+	.primary-nav__list > li:is(.current-menu-item, .current-menu-ancestor, .is-current-section):not(.menu-cta) > a::before {
+		opacity: 1;
+	}
+
+	.primary-nav__list > li:is(.current-menu-item, .current-menu-ancestor, .is-current-section):not(.menu-cta) > a:is(:hover, :focus-visible) {
+		transform: rotate(0deg);
 	}
 
 	.js .submenu-toggle {
