@@ -94,6 +94,150 @@
 }
 
 /*
+ * Slogan banner: a tilted navy band across the edge between the hero and the next section. The slogans scroll
+ * sideways; the round button pauses them (WCAG 2.2.2), and so does hovering. Without JavaScript, or when the
+ * visitor prefers reduced motion, the band stays still and shows each slogan once, wrapping onto more lines.
+ */
+.slogan-banner {
+	--focus-ring: var(--wp--preset--color--gold);
+	position: relative;
+	z-index: 1;
+	margin-block: -1.25rem;
+	overflow-x: clip;
+}
+
+.slogan-banner__band {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: calc(100% + 4rem);
+	min-height: 2.5rem;
+	margin-inline: -2rem;
+	padding: var(--wp--preset--spacing--8) calc(2rem + var(--wp--custom--grid--margin));
+	background: var(--wp--preset--color--navy);
+	transform: rotate(-2deg);
+}
+
+.slogan-banner__track {
+	display: flex;
+	flex-grow: 1;
+}
+
+.slogan-banner__list {
+	display: flex;
+	flex-wrap: wrap;
+	flex-shrink: 0;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--8) 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.slogan-banner__list[aria-hidden="true"] {
+	display: none;
+}
+
+.slogan-banner__item {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--8);
+	padding-inline-end: var(--wp--preset--spacing--8);
+	color: var(--wp--preset--color--white);
+	font-family: var(--wp--preset--font-family--anton);
+	font-size: var(--wp--preset--font-size--step-2);
+	line-height: 1;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.slogan-banner__item .icon {
+	flex-shrink: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+	color: var(--wp--preset--color--orange);
+}
+
+/* Pause / Play: white circle at the end of the band, lined up with the page edge. Shown by slogan-banner.js. */
+.slogan-banner__toggle {
+	position: absolute;
+	inset-block-start: 50%;
+	inset-inline-end: calc(2rem + var(--wp--custom--grid--margin));
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 2px solid var(--wp--preset--color--navy);
+	border-radius: 50%;
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--navy);
+	cursor: pointer;
+	transform: translateY(-50%);
+}
+
+.slogan-banner__toggle[hidden],
+.slogan-banner__toggle .icon--play,
+.slogan-banner.is-paused .slogan-banner__toggle .icon--pause {
+	display: none;
+}
+
+.slogan-banner.is-paused .slogan-banner__toggle .icon--play {
+	display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.js .slogan-banner__band {
+		padding-inline: 0;
+	}
+
+	.js .slogan-banner__track {
+		flex-grow: 0;
+		flex-shrink: 0;
+		animation: slogan-scroll 40s linear infinite;
+	}
+
+	.js .slogan-banner__list {
+		flex-wrap: nowrap;
+		width: auto;
+	}
+
+	.js .slogan-banner__list[aria-hidden="true"] {
+		display: flex;
+	}
+
+	.slogan-banner.is-paused .slogan-banner__track {
+		animation-play-state: paused;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+	.slogan-banner:hover .slogan-banner__track {
+		animation-play-state: paused;
+	}
+}
+
+/* Nothing moves with reduced motion, so there is nothing to pause. */
+@media (prefers-reduced-motion: reduce) {
+	.slogan-banner__toggle {
+		display: none;
+	}
+}
+
+@keyframes slogan-scroll {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@media (min-width: 60em) {
+	.slogan-banner__band {
+		transform: rotate(-1.5deg);
+	}
+}
+
+/*
  * Change Starts Here: heading, a photo, the What We Do and Why It Matters tiles and a Learn more button.
  * The extra space on top leaves room for the slogan banner, which overlaps this section.
  */

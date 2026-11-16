@@ -59,6 +59,19 @@ function esaa_enqueue_assets() {
 			'strategy'  => 'defer',
 		)
 	);
+
+	if ( is_front_page() ) {
+		wp_enqueue_script(
+			'esaa-slogan-banner',
+			$uri . '/assets/js/slogan-banner.js',
+			array(),
+			(string) filemtime( $dir . '/assets/js/slogan-banner.js' ),
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'esaa_enqueue_assets' );
 

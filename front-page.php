@@ -64,18 +64,31 @@ get_header(); ?>
 		</div>
 	</section>
 
-	<div class="container">
-		<?php if ( $esaa_slogans ) : ?>
-			<?php // Each slogan is printed once; the scrolling animation and its pause button come with the styling. ?>
-			<section class="slogan-banner" aria-label="<?php esc_attr_e( 'Our slogans', 'esaa' ); ?>">
-				<ul>
-					<?php foreach ( $esaa_slogans as $esaa_slogan ) : ?>
-						<li><?php echo esc_html( $esaa_slogan ); ?></li>
-					<?php endforeach; ?>
-				</ul>
-			</section>
-		<?php endif; ?>
-	</div>
+	<?php if ( $esaa_slogans ) : ?>
+		<?php
+		// The band scrolls by half its length, so it holds an even number of copies, enough to fill a wide screen.
+		// Screen readers get the first copy only.
+		$esaa_copies = 2 * max( 2, (int) ceil( 8 / count( $esaa_slogans ) ) );
+		?>
+		<section class="slogan-banner" aria-label="<?php esc_attr_e( 'Our slogans', 'esaa' ); ?>">
+			<div class="slogan-banner__band">
+				<div class="slogan-banner__track">
+					<?php for ( $esaa_copy = 0; $esaa_copy < $esaa_copies; $esaa_copy++ ) : ?>
+						<ul class="slogan-banner__list"<?php echo $esaa_copy ? ' aria-hidden="true"' : ''; ?>>
+							<?php foreach ( $esaa_slogans as $esaa_slogan ) : ?>
+								<li class="slogan-banner__item"><?php esaa_icon( 'star' ); ?><?php echo esc_html( $esaa_slogan ); ?></li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endfor; ?>
+				</div>
+				<button class="slogan-banner__toggle" type="button" hidden data-label-pause="<?php esc_attr_e( 'Pause the slogans', 'esaa' ); ?>" data-label-play="<?php esc_attr_e( 'Play the slogans', 'esaa' ); ?>">
+					<?php esaa_icon( 'pause' ); ?>
+					<?php esaa_icon( 'play' ); ?>
+					<span class="screen-reader-text"><?php esc_html_e( 'Pause the slogans', 'esaa' ); ?></span>
+				</button>
+			</div>
+		</section>
+	<?php endif; ?>
 
 	<section class="change has-dots" aria-labelledby="change-title">
 		<div class="container">
